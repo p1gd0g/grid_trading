@@ -1,3 +1,7 @@
+## 0.0.6
+
+modify `filterPauseTime`.
+
 ## 0.0.5
 
 add `getPeriod`.
