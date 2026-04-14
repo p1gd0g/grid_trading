@@ -37,3 +37,11 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+
+
+### env
+
+```
+$env:FLUTTER_STORAGE_BASE_URL="https://storage.googleapis.com"
+$env:PUB_HOSTED_URL="https://pub.dev"
+```
