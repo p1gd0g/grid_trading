@@ -2,7 +2,7 @@ name: grid_trading
 description: "A new Flutter package project."
 version: 0.0.1
 homepage: https://github.com/p1gd0g/grid_trading
-publish_to: https://pub.dev/
+publish_to: pub.dev
 
 environment:
   sdk: ^3.11.1
