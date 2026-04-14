@@ -13,9 +13,9 @@ and the Flutter guide for
 
 Calculator for grid trading strategy.
 
-### env
+### publish command
 
 ```
-$env:FLUTTER_STORAGE_BASE_URL="https://storage.googleapis.com"
 $env:PUB_HOSTED_URL="https://pub.dev"
+flutter pub publish
 ```
