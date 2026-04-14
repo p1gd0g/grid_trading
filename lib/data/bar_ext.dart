@@ -1,8 +1,8 @@
 import 'package:grid_trading/data/bar.dart';
 import 'package:grid_trading/enum/exchange.dart';
 
-extension ChartSampleDataExtension on List<BarData> {
-  
+extension BarDataExtension on List<BarData> {
+
   // 过滤掉中午休市时间段的数据
   List<BarData> filterPauseTime(Exchange exchange) {
     return where((e) => e.filterPauseTime(exchange)).toList();

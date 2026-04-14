@@ -1,3 +1,7 @@
+## 0.0.7
+
+add `TransactionDeal`.
+
 ## 0.0.6
 
 modify `filterPauseTime`.
