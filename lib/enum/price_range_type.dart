@@ -1,0 +1,1 @@
+enum PriceRangeType { price, percent }

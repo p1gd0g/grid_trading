@@ -1,3 +1,7 @@
+## 0.0.8
+
+add enums.
+
 ## 0.0.7
 
 add `TransactionDeal`.
