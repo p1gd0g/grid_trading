@@ -9,4 +9,8 @@ void main() {
     expect(calculator.addOne(-7), -6);
     expect(calculator.addOne(0), 1);
   });
+
+  test('duration', () {
+    expect(Duration(seconds: 1).toString(), '0:00:01.000000');
+  });
 }
