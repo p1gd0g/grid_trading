@@ -7,3 +7,5 @@ init.
 add bar data.
 
 ## 0.0.3
+
+add `filterPauseTime`.

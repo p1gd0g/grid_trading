@@ -3,46 +3,22 @@ import 'package:grid_trading/enum/exchange.dart';
 
 extension ChartSampleDataExtension on List<BarData> {
   // 过滤掉中午休市时间段的数据
-  List<BarData> filterClose(Exchange exchange) {
+  List<BarData> filterPauseTime(Exchange exchange) {
     if (exchange == .crypto || exchange == .us || exchange == .unknown) {
     } else {
       return this;
     }
 
-    return where((e) {
-      final dateTime = e.dt;
-      final pauseEnd = DateTime.utc(
-        dateTime.year,
-        dateTime.month,
-        dateTime.day,
-        5,
-        0,
-      );
+    final pauseStartUtc = exchange == Exchange.hk
+        ? 4 *
+              3600 // UTC 04:00
+        : 7 * 3600 + 30 * 60; // UTC 03:30
+    const pauseEndUtc = 5 * 3600; // UTC 05:00
 
-      if (exchange == Exchange.hk) {
-        final pauseStart = DateTime.utc(
-          dateTime.year,
-          dateTime.month,
-          dateTime.day,
-          4,
-          0,
-        ).add(const Duration(hours: 8));
-        if (dateTime.isAfter(pauseStart) && dateTime.isBefore(pauseEnd)) {
-          return false;
-        }
-      } else {
-        final pauseStart = DateTime.utc(
-          dateTime.year,
-          dateTime.month,
-          dateTime.day,
-          3,
-          30,
-        ).add(const Duration(hours: 8));
-        if (dateTime.isAfter(pauseStart) && dateTime.isBefore(pauseEnd)) {
-          return false;
-        }
-      }
-      return true;
+    return where((e) {
+      final utcSecondsOfDay = e.timestamp % 86400;
+      return !(utcSecondsOfDay > pauseStartUtc &&
+          utcSecondsOfDay < pauseEndUtc);
     }).toList();
   }
 }
