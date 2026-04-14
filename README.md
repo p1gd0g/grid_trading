@@ -13,7 +13,7 @@ and the Flutter guide for
 
 Calculator for grid trading strategy.
 
-### publish command
+### how to publish
 
 ```
 $env:PUB_HOSTED_URL="https://pub.dev"
