@@ -42,4 +42,18 @@ extension ChartSampleDataExtension on List<BarData> {
       return '${interval.inDays} 天';
     }
   }
+
+  Duration getPeriod() {
+    if (isEmpty) {
+      return Duration.zero;
+    }
+
+    var start = firstOrNull?.timestamp;
+    var end = lastOrNull?.timestamp;
+    if (start == null || end == null) {
+      return Duration.zero;
+    }
+
+    return Duration(seconds: end - start);
+  }
 }

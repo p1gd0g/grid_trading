@@ -1,3 +1,7 @@
+## 0.0.5
+
+add `getPeriod`.
+
 ## 0.0.4
 
 add `calcInterval`.
