@@ -1,6 +1,6 @@
 name: grid_trading
 description: "Calculator for grid trading strategy"
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/p1gd0g/grid_trading
 
 environment:
