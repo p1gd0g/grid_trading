@@ -1,3 +1,7 @@
+## 0.0.12
+
+init `compute`.
+
 ## 0.0.11
 
 init `Transaction`.
