@@ -11,7 +11,9 @@ class BarData {
 
   final double? high;
 
-  final double? volume;
+  final double? volume; // 成交量
+
+  final double? turnover; // 成交额
 
   DateTime get dt {
     _dt ??= DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
@@ -26,7 +28,8 @@ class BarData {
       close = getDouble(json, 'Close'),
       low = getDouble(json, 'Low'),
       high = getDouble(json, 'High'),
-      volume = getDouble(json, 'Volume');
+      volume = getDouble(json, 'Volume'),
+      turnover = getDouble(json, 'Turnover');
 
   static int getTimestamp(Map<String, dynamic> json) {
     var timestamp = json['Timestamp'];

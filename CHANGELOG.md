@@ -1,3 +1,7 @@
+## 0.0.13
+
+fix `BarData`.
+
 ## 0.0.12
 
 init `compute`.
