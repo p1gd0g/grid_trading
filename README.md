@@ -19,3 +19,7 @@ Calculator for grid trading strategy.
 $env:PUB_HOSTED_URL="https://pub.dev"
 flutter pub publish
 ```
+
+### todo
+
+use int instead of double while computing.
