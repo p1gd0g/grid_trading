@@ -1,3 +1,7 @@
+## 0.0.14
+
+fix `getDouble`.
+
 ## 0.0.13
 
 fix `BarData`.

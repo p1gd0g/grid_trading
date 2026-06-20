@@ -50,6 +50,10 @@ class BarData {
 
   static double getDouble(Map<String, dynamic> json, String name) {
     var value = json[name];
+    if (value == null) {
+      return 0;
+    }
+
     if (value is double) {
       return value;
     }
