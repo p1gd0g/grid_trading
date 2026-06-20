@@ -1,3 +1,7 @@
+## 0.0.15
+
+fix `compute`.
+
 ## 0.0.14
 
 fix `getDouble`.

@@ -2,10 +2,17 @@ import 'package:grid_trading/data/bar.dart';
 import 'package:grid_trading/data/transaction.dart';
 
 // 模拟交易，计算触发次数
-int compute(List<BarData> bars, double priceRange) {
+int compute(List<BarData> bars, double priceRange, {BarData? prevBar}) {
   var count = 0;
 
-  var tmpBasePrice = bars.firstOrNull?.open ?? 0;
+  // 优先找前一根 k 线的收盘价作为基准价，
+  // 如果没有，则找第一根K线的开盘价，
+  // 如果还没有，则返回 0
+  var tmpBasePrice = prevBar?.close ?? 0;
+
+  if (tmpBasePrice == 0) {
+    tmpBasePrice = bars.firstOrNull?.open ?? 0;
+  }
 
   if (tmpBasePrice == 0) {
     return 0;
