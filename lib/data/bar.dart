@@ -63,7 +63,6 @@ class BarData {
 
   bool filterPauseTime(Exchange exchange) {
     if (exchange == .crypto || exchange == .us || exchange == .unknown) {
-    } else {
       return true;
     }
 
