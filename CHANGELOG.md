@@ -1,3 +1,7 @@
+## 0.0.16
+
+fix `filterPauseTime`.
+
 ## 0.0.15
 
 fix `compute`.

@@ -67,13 +67,42 @@ class BarData {
       return true;
     }
 
-    final pauseStartUtc = exchange == Exchange.hk
-        ? 4 *
-              3600 // UTC 04:00
-        : 7 * 3600 + 30 * 60; // UTC 03:30
-    const pauseEndUtc = 5 * 3600; // UTC 05:00
+    // final pauseStartUtc = exchange == Exchange.hk
+    //     ? 4 *
+    //           3600 // UTC 04:00
+    //     : 7 * 3600 + 30 * 60; // UTC 03:30
+    // const pauseEndUtc = 5 * 3600; // UTC 05:00
 
-    final utcSecondsOfDay = timestamp % 86400;
-    return !(utcSecondsOfDay > pauseStartUtc && utcSecondsOfDay < pauseEndUtc);
+    final DateTime pauseStart = exchange == Exchange.hk
+        ? dt
+              .toUtc()
+              .copyWith(
+                hour: 4,
+                minute: 0,
+                second: 0,
+                millisecond: 0,
+                microsecond: 0,
+              )
+              .toLocal()
+        : dt
+              .toUtc()
+              .copyWith(
+                hour: 3,
+                minute: 30,
+                second: 0,
+                millisecond: 0,
+                microsecond: 0,
+              )
+              .toLocal();
+
+    final DateTime pauseEnd = dt
+        .toUtc()
+        .copyWith(hour: 5, minute: 0, second: 0, millisecond: 0, microsecond: 0)
+        .toLocal();
+
+    // final utcSecondsOfDay = timestamp % 86400;
+    // return !(utcSecondsOfDay > pauseStartUtc && utcSecondsOfDay < pauseEndUtc);
+
+    return !(dt.isAfter(pauseStart) && dt.isBefore(pauseEnd));
   }
 }
