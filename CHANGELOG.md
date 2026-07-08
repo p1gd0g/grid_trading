@@ -1,3 +1,7 @@
+## 0.0.18
+
+improve `bar`.
+
 ## 0.0.17
 
 fix `filterPauseTime`.

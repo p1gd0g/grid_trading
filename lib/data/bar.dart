@@ -24,12 +24,12 @@ class BarData {
 
   BarData.fromJson(Map<String, dynamic> json)
     : timestamp = getTimestamp(json),
-      open = getDouble(json, 'Open'),
-      close = getDouble(json, 'Close'),
-      low = getDouble(json, 'Low'),
-      high = getDouble(json, 'High'),
-      volume = getDouble(json, 'Volume'),
-      turnover = getDouble(json, 'Turnover');
+      open = _getDoubleFromMap(json, ['Open', 'open']),
+      close = _getDoubleFromMap(json, ['Close', 'close']),
+      low = _getDoubleFromMap(json, ['Low', 'low']),
+      high = _getDoubleFromMap(json, ['High', 'high']),
+      volume = _getDoubleFromMap(json, ['Volume', 'volume']),
+      turnover = _getDoubleFromMap(json, ['Turnover', 'amount']);
 
   static int getTimestamp(Map<String, dynamic> json) {
     var timestamp = json['Timestamp'];
@@ -37,7 +37,7 @@ class BarData {
       return timestamp;
     }
 
-    timestamp = json['Date'] ?? json['Datetime'];
+    timestamp = json['Date'] ?? json['Datetime'] ?? json['datetime'];
     if (timestamp is int) {
       return timestamp ~/ 1000;
     }
@@ -48,8 +48,17 @@ class BarData {
     return int.parse(str);
   }
 
-  static double getDouble(Map<String, dynamic> json, String name) {
-    var value = json[name];
+  static double _getDoubleFromMap(
+    Map<String, dynamic> json, [
+    List<String> names = const [],
+  ]) {
+    dynamic value;
+    for (var name in names) {
+      value = json[name];
+      if (value != null) {
+        break;
+      }
+    }
     if (value == null) {
       return 0;
     }
@@ -65,12 +74,6 @@ class BarData {
     if (exchange == .crypto || exchange == .us || exchange == .unknown) {
       return true;
     }
-
-    // final pauseStartUtc = exchange == Exchange.hk
-    //     ? 4 *
-    //           3600 // UTC 04:00
-    //     : 7 * 3600 + 30 * 60; // UTC 03:30
-    // const pauseEndUtc = 5 * 3600; // UTC 05:00
 
     final DateTime pauseStart = exchange == Exchange.hk
         ? dt
@@ -98,9 +101,6 @@ class BarData {
         .toUtc()
         .copyWith(hour: 5, minute: 0, second: 0, millisecond: 0, microsecond: 0)
         .toLocal();
-
-    // final utcSecondsOfDay = timestamp % 86400;
-    // return !(utcSecondsOfDay > pauseStartUtc && utcSecondsOfDay < pauseEndUtc);
 
     return !(dt.isAfter(pauseStart) && dt.isBefore(pauseEnd));
   }
